@@ -13,6 +13,7 @@
     "@types/node": "^14.11.8",
     "@types/react": "^16.9.52",
     "@types/react-dom": "^16.9.8",
+    "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
     "babel-loader": "^8.1.0",
@@ -48,15 +49,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --quiet",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint",
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "dependencies": {
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "styled-components": "^5.2.0"
   },
   "jest": {
     "clearMocks": true,
