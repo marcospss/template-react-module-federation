@@ -17,6 +17,6 @@ describe('find text true is truthy and false is falsy', () => {
   });
 
   it('false is falsy', () => {
-    expect(false).toBe(false);
+    expect(false).toBe(true);
   });
 });
