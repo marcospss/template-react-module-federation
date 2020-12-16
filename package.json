@@ -67,17 +67,20 @@
     "build": "npm run clean && webpack --mode production",
     "clean": "rm -rf dist",
     "test": "jest --coverage",
-    "test:watch": "jest --coverage --no-cache --watch"
+    "test:watch": "jest --coverage --no-cache --watch",
+    "prettier:check": "prettier --config .prettierrc --check \"src/**/*.{ts,css,html}\""
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
+      "pre-push": "npm run test",
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "lint-staged": {
     "./src/**/*.{js,jsx,ts,tsx}": [
+      "npm run prettier:check",
       "eslint --fix",
       "cross-env CI=true npm test --bail --findRelatedTests",
       "git add"
