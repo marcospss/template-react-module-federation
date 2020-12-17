@@ -27,6 +27,7 @@
     "babel-plugin-root-import": "^6.6.0",
     "bundle-loader": "^0.5.6",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv-webpack": "^6.0.0",
@@ -66,7 +67,7 @@
     "start": "webpack-dev-server --open",
     "build": "npm run clean && webpack --mode production",
     "clean": "rm -rf dist",
-    "test": "jest --coverage",
+    "test": "jest --coverage --bail",
     "test:watch": "jest --coverage --no-cache --watch",
     "prettier:check": "prettier --config .prettierrc --check \"src/**/*.{ts,css,html}\"",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -81,10 +82,10 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx,ts,tsx}": [
+    "./src/**/*.{ts,tsx}": [
       "npm run prettier:check",
       "eslint --cache --fix",
-      "cross-env CI=true npm test --bail --findRelatedTests",
+      "cross-env CI=true jest --bail --findRelatedTests",
       "git add"
     ]
   },
