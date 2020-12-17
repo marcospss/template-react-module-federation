@@ -4,6 +4,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HotModuleReplacementPlugin = require('webpack').HotModuleReplacementPlugin;
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
 // const { GenerateSW } = require('workbox-webpack-plugin');
 
@@ -15,12 +16,14 @@ module.exports = {
     entry: './src/index',
     mode: isDevelopment ? 'development' : 'production',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        //contentBase: path.join(__dirname, 'dist'),
         port: 3000,
+        hot: true,
         historyApiFallback: true,
     },
     output: {
         publicPath: 'http://localhost:3000/',
+        path: path.resolve(process.cwd(), 'dist'),
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -40,12 +43,13 @@ module.exports = {
                 exclude: /node_modules/,
                 options: {
                     presets: ['@babel/preset-react', '@babel/preset-typescript'],
-                    plugins: ['@babel/plugin-transform-runtime', isDevelopment && require.resolve('react-refresh/babel')],
+                    plugins: ['@babel/plugin-transform-runtime', isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
                 },
             },
-        ].filter(Boolean),
+        ],
     },
     plugins: [
+        new CleanWebpackPlugin(),
         isDevelopment && new HotModuleReplacementPlugin(),
         isDevelopment && new ReactRefreshWebpackPlugin(),
         isDevelopment && new Dotenv(),
