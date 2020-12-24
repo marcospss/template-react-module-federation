@@ -1,5 +1,5 @@
 import React from 'react';
 
-const App = () => <h1>Typescript</h1>;
+const App = (): JSX.Element => <h1>Typescript</h1>;
 
 export default App;
