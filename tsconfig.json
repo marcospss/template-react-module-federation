@@ -28,9 +28,9 @@
         }
     },
     "include": [
-        "src/**/*", // *** The files TypeScript should type check ***
-        "globals.d.ts",
-        "remotes.d.ts"
+        "./src/**/*", // *** The files TypeScript should type check ***
+        "./types"
     ],
-    "exclude": ["node_modules", "dist"] // *** The files to not type check ***
+    "exclude": ["node_modules", "dist"], // *** The files to not type check ***
+    "types": ["typePatches"]
 }
