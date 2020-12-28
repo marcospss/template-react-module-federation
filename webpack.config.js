@@ -66,19 +66,6 @@ module.exports = {
         },
       },
       {
-        test: /\.ts(x?)$/,
-        exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader' },
-          {
-            loader: 'eslint-loader',
-            options: {
-              emitWarning: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.(png|svg|jpg|gif)$/i,
         use: ['file-loader'],
       },
@@ -92,6 +79,14 @@ module.exports = {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(dotenv.config().parsed),
       }),
+    new ESLintPlugin({
+      extensions: ['ts', 'tsx'],
+      exclude: 'node_modules',
+      files: ['./src'],
+      emitError: true,
+      emitWarning: true,
+      outputReport: true,
+    }),
     new ModuleFederationPlugin({
       name: process.env.NAME_APPLICATION,
       filename: 'remoteEntry.js',
