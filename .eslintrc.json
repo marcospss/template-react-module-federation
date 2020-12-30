@@ -31,6 +31,7 @@
     "prettier/@typescript-eslint"
   ],
   "rules": {
+    "react/prop-types": 0,
     "comma-dangle": ["error", "always-multiline"],
     "@typescript-eslint/explicit-module-boundary-types": "off", // disable the rule for all files
     "import/extensions": [
